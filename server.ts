@@ -24,6 +24,7 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
+
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
@@ -44,7 +45,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'];
 
   // Start up the Node server
   const server = app();
