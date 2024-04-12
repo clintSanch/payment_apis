@@ -2,9 +2,7 @@
 
 FROM node:18-alpine
 
-RUN mkdir -p /PaymenyAPIs/node/node_modules && chown -R node:node /PaymenyAPIs/node/app
-
-WORKDIR /PaymenyAPIs/node/app
+WORKDIR /app
 
 COPY package*.json ./
 
