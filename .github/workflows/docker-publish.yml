@@ -1,9 +1,4 @@
-name: Docker
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+name: Docker Image Publish of PaymentAPIs
 
 on:
   schedule:
@@ -23,8 +18,10 @@ env:
 
 
 jobs:
+  # Here the job name to run is build
   build:
 
+    # This is the Action Runner(ubuntu-latest)
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -37,6 +34,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # The cosign tool is used to sign the image before pushing it to the Docker Hub(Engine) registry. 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
@@ -45,6 +43,7 @@ jobs:
         with:
           cosign-release: 'v2.1.1'
 
+      # Buildx is a Docker CLI plugin that extends the docker command with the full support of the features provided by Moby BuildKit builder toolkit.    
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
       # https://github.com/docker/setup-buildx-action
@@ -58,8 +57,9 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}
+          
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
@@ -76,7 +76,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }} # Doing the pushing but not pushing on PR
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
