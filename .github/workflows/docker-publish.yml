@@ -42,6 +42,9 @@ jobs:
         uses: sigstore/cosign-installer@6e04d228eb30da1757ee4e1dd75a0ec73a653e06 #v3.1.1
         with:
           cosign-release: 'v2.2.4'
+          use-sudo: true
+      - name: check install!
+        run: cosign version
 
       # Buildx is a Docker CLI plugin that extends the docker command with the full support of the features provided by Moby BuildKit builder toolkit.    
       # Set up BuildKit Docker container builder to be able to build
