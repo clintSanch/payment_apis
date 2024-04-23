@@ -61,7 +61,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor}}
-          password: ${{ secrets.GIT_AUTH_TOKEN }}
+          password: ${{ secrets.SECRET_GITHUB_TOKEN }}
 
 
       # Extract metadata (tags, labels) for Docker
