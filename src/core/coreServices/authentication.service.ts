@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
 import { isPlatformServer } from '@angular/common';
 import { productionEnvironment } from '../../environments/environment.production';
+import { devEnvironment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  private readonly server = devEnvironment.base_url;
 
   constructor(private httpAuthClient: HttpClient, @Inject(PLATFORM_ID) private platformId: object) { }
 

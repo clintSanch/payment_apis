@@ -1,4 +1,5 @@
 export const devEnvironment = {
     production: false,
-    apiKey: 'devKey'
+    apiKey: 'devKey',
+    base_url: ''
 };

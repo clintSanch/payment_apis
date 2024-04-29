@@ -2,11 +2,14 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { CoreLogs } from '../models/logs.model';
 import { HttpClient } from '@angular/common/http';
 import { isPlatformServer } from '@angular/common';
+import { devEnvironment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
+
+  private readonly server = devEnvironment.base_url;
 
   appLogs: CoreLogs = new CoreLogs();
   
