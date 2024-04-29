@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { CoreLogs } from '../models/logs.model';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformServer } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -9,5 +10,9 @@ export class LoggerService {
 
   appLogs: CoreLogs = new CoreLogs();
   
-  constructor(private httpLoggerClient: HttpClient) { }
+  constructor(private httpLoggerClient: HttpClient, @Inject(PLATFORM_ID) private platformid: object) { }
+
+  getLogs() {
+    const url = isPlatformServer(this.platformid);
+  }
 }
