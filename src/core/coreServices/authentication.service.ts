@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   signIn(){
     const path = '/api/auth/users';
-    const url = isPlatformServer(this.platformId)? productionEnvironment.authUrl +path: path;
+    const url = isPlatformServer(this.platformId)? productionEnvironment.base_url +path: path;
 
     return this.httpAuthClient.get(url)
     .pipe( map(res => res)).forEach(data => data.toString())

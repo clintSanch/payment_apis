@@ -4,5 +4,5 @@ export const productionEnvironment = {
     envName: 'production',
     mpesaUrl: 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
     airtelMoneyUrl: 'https://openapiuat.airtel.africa',
-    authUrl: 'http//localhost:3000/'
+    base_url: 'http//localhost:3000/'
 }
