@@ -4,5 +4,5 @@ export const sandboxEnvironment = {
     envName: 'sandbox',
     mpesaUrl: 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
     airtelMoneyUrl: 'https://openapiuat.airtel.africa/auth/oauth2/token',
-    base_url: ''
+    base_url: 'http://localhost:3500'
 }

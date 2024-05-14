@@ -3,6 +3,7 @@ import { CoreLogs } from '../models/logs.model';
 import { HttpClient } from '@angular/common/http';
 import { isPlatformServer } from '@angular/common';
 import { devEnvironment } from '../../environments/environment.development';
+import * as Sentry from '@sentry/angular-ivy';
 
 @Injectable({
   providedIn: 'root'
