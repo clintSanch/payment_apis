@@ -93,9 +93,9 @@ jobs:
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request'}}
         env:
-          COSIGN_PUBLIC_KEY: ${{ secrets.COSIGN_PUBLIC_KEY}}
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY}}
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD}}
+          DIGEST: ${{ steps.build-and-push.outputs.digest }}
+          TAGS: ghcr.io/${{ github.repository }}
+          COSIGN_EXPERIMENTAL: "true"
         run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ghcr.io/clintSanch/payment_apis:latest
+          cosign sign --yes "${TAGS}@${DIGEST}"
         
