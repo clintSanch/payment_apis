@@ -92,8 +92,9 @@ jobs:
       # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request'}}
-        run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ghcr.io/clintSanch/payment_apis:latest
         env:
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY}}
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD}}
+        run: |
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ghcr.io/clintSanch/payment_apis:latest
+        
