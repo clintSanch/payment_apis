@@ -97,5 +97,5 @@ jobs:
           TAGS: ghcr.io/${{ github.repository }}
           COSIGN_EXPERIMENTAL: "true"
         run: |
-          cosign sign --yes "${TAGS}@${DIGEST}"
+          cosign sign --yes "${TAGS}:latest"
         
