@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/payment-apis",
+            "outputPath": "dist/payment_apis",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
