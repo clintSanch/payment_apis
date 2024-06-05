@@ -6,6 +6,8 @@ import { provideClientHydration, withHttpTransferCacheOptions } from '@angular/p
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import * as Sentry from '@sentry/angular-ivy';
 import { isPlatformServer } from '@angular/common';
+import { provideStore, } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 function provideSentryProviders(platformId: object): unknown[] {
   if (isPlatformServer(platformId)) {
@@ -44,6 +46,9 @@ export const appConfig: ApplicationConfig = {
       provide: 'sentryProviders',
       useFactory: provideSentryProviders,
       deps: [PLATFORM_ID]
-    }
+    },
+    provideStore({}),
+    provideEffects(),
+
   ]
 };
